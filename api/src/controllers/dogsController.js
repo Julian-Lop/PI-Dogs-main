@@ -44,7 +44,7 @@ exports.verDogs = async (req,res)=> {
             const returnDogs = await allDogs()
             let queryDogs = []
             returnDogs.map(dog =>{
-                if(dog.name.includes(name)){
+                if(dog.Nombre.includes(name)){
                     return queryDogs.push({
                         Nombre : dog.Nombre,
                         Peso : dog.Peso,
@@ -89,15 +89,24 @@ exports.sendDog = async (req,res)=>{
                 Peso: peso,
                 Vida: vida
         })
-        temperamentos.map(temp => {
+        if(temperamentos.length > 1){
+            temperamentos.map(async temp => {
+                const TemperamentoCreado = await Temperamentos.findAll({
+                    where:{
+                        Nombre: temperamentos
+                    }}
+                )
+                RazaCreada.addTemperamentos(TemperamentoCreado)
+            })
+        }else{
             const TemperamentoCreado = await Temperamentos.findAll({
                 where:{
                     Nombre: temperamentos
                 }}
             )
-            
             RazaCreada.addTemperamentos(TemperamentoCreado)
-        })    
+        }
+            
 
         res.status(201).json(TemperamentoCreado)
     } catch (error) {
