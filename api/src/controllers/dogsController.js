@@ -75,7 +75,12 @@ exports.verDogdRaza = async (req,res)=>{
                                     })
             }   
         })
-        res.status(200).json(queryDogs)        
+        if(queryDogs.length){
+            res.status(200).json(queryDogs)    
+        }else{
+            res.status(400).send('No hay raza de perro con id'+idRaza)
+        }
+            
     }
 }
 
