@@ -29,7 +29,9 @@ exports.verTemperamentos =  (req,res)=>{
                 })
             })
 
-            res.status(200).json(await Temperamentos.findAll({attributes:['Nombre']}))
+            let temperamentsDB = await Temperamentos.findAll()
+
+            res.status(200).json(temperamentsDB)
         })
         
     } catch (error) {
