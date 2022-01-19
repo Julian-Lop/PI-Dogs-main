@@ -2,6 +2,11 @@ export const OBTENER_DOGS = 'OBTENER_dOGS'
 export const OBTENER_TEMPERAMENTOS = 'OBTENER_TEMPERAMENTOS'
 export const OBTENER_INFO_RAZA = 'OBTENER_INFO_RAZA'
 export const FALLA_BUSQUEDA = 'FALLA_BUSQUEDA'
+export const FILTRAR_TEMPERAMENTO = 'FILTRAR_TEMPERAMENTO'
+export const FILTRAR_RAZA = 'FILTRAR_RAZA'
+export const ORDENAR_PESO = 'ORDENAR_PESO'
+export const ORDENAR_ALFABETICO = 'ORDENAR_ALFABETICO'
+export const CREAR_DOG = 'CREAR_DOG'
 
 export function getAllDogs(dogname){
     return async function(dispatch){
@@ -53,4 +58,25 @@ export function getDetail(idRaza){
     }
 }
 
+export function filterTemperament(temperamento){
+    return {type: FILTRAR_TEMPERAMENTO, payload:temperamento}
+}
 
+export function filterRaza(idRaza){
+    return {type: FILTRAR_RAZA, payload:idRaza}
+}
+
+export function organizeByWeight(opcionWeight){
+    return {type: ORDENAR_PESO,payload:opcionWeight}
+}
+
+export function organizeByAlphabet(opcionAlphabet){
+    return {type: ORDENAR_ALFABETICO, payload: opcionAlphabet}
+}
+
+export function createDog(attributesDog){
+    return async function(dispatch){
+        let createdDog = await fetch(`http://localhost:3001/dog/${attributesDog}`)
+        return createdDog
+    } 
+}
