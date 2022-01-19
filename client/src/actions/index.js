@@ -38,21 +38,19 @@ export function getTemperaments(){
 export function getDetail(idRaza){
     return async function(dispatch){
         try {
-            if(dogname){
-                return fetch(`http://localhost:3001/dogs/${dogname}`)
+            if(idRaza){
+                return fetch(`http://localhost:3001/dogs/${idRaza}`)
                 .then(response => response.json())
                 .then(json => {
-                    dispatch({type: OBTENER_DOGS, payload: json})
+                    dispatch({type: OBTENER_INFO_RAZA, payload: json})
                 }).catch(err => {
-                    dispatch({type: OBTENER_DOGS, payload: err})
+                    dispatch({type: OBTENER_INFO_RAZA, payload: err})
                 })
-            }else{
-                let json = await fetch(`http://localhost:3001/dogs`)
-                .then(response => response.json())
-                return dispatch({type: OBTENER_DOGS, payload: json})
             }
         } catch (error) {
-            
+            console.log(error)
         }
     }
 }
+
+
