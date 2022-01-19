@@ -1,4 +1,4 @@
-import { OBTENER_DOGS } from "../actions"
+import { OBTENER_DOGS, OBTENER_TEMPERAMENTOS } from "../actions"
 
 const estadoInicial = {
     todosLosdogs : [],
@@ -12,6 +12,11 @@ function rootReducer(state = estadoInicial, action){
                 ...state,
                 todosLosdogs: action.payload
             }
+        case  OBTENER_TEMPERAMENTOS:
+            return {
+                ...state,
+                temperamentos: action.payload
+            } 
         default:
             return state
     }
