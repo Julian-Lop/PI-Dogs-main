@@ -5,19 +5,27 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Razas', {
     ID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
     Nombre: {
       type: DataTypes.STRING(150),
       allowNull: false
     },
-    Altura: {
+    AlturaMin: {
       type: DataTypes.FLOAT,
       allowNull: false
     },
-    Peso: {
+    AlturaMax: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    PesoMin: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    PesoMax: {
       type: DataTypes.FLOAT,
       allowNull: false
     },
@@ -27,3 +35,4 @@ module.exports = (sequelize) => {
     }
   });
 };
+

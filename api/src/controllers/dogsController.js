@@ -4,7 +4,7 @@ const  {APIKEY } = process.env
 const {Razas,Temperamentos} = require('../db.js')
 
 const allDogs = async () => {
-    let dogsDB = await Razas.findAll({attributes:['ID','Nombre','Altura','Peso','Vida'], 
+    let dogsDB = await Razas.findAll({attributes:['ID','Nombre','AlturaMin','AlturaMax','PesoMin','PesoMax','Vida'], 
     include: {
         model: Temperamentos,
         attributes: ['Nombre'],
@@ -19,12 +19,12 @@ const allDogs = async () => {
             return {
                     ID: dog.id,
                     Nombre : dog.name,
-                    PesoMin : dog.weight.metric.split(' - ')[0],
-                    PesoMax : dog.weight.metric.split(' - ')[1],
-                    AlturaMin : dog.height.metric.split(' - ')[0],
-                    AlturaMax : dog.height.metric.split(' - ')[1],
+                    PesoMin : Number(dog.weight.metric.split(' - ')[0]),
+                    PesoMax : Number(dog.weight.metric.split(' - ')[1]),
+                    AlturaMin : Number(dog.height.metric.split(' - ')[0]),
+                    AlturaMax : Number(dog.height.metric.split(' - ')[1]),
                     Temperamento : dog.temperament,
-                    Vida : dog.life_span.split(' ')[0],
+                    Vida : Number(dog.life_span.split(' ')[0]),
                     image : dog.image.url
                     }
         })
