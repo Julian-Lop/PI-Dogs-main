@@ -37,7 +37,7 @@ function rootReducer(state = estadoInicial, action){
                 detalleRaza: action.payload
             }
         case FILTRAR_TEMPERAMENTO:
-            const tempfilter = state.todosLosdogs.filter(e => {
+            const tempfilter = state.todosLosdogs.filter((e)=> {
                 if(typeof(e.Temperamento) === 'string'){
                     return e.Temperamento.includes(action.payload)
                 }
@@ -53,7 +53,24 @@ function rootReducer(state = estadoInicial, action){
         case FILTRAR_RAZA:
             return{}
         case ORDENAR_PESO:
-            return{}
+            let dogsPeso = !state.dogsfiltrados.length ? state.todosLosdogs : state.dogsfiltrados
+            if(action.payload === 'asc'){
+                dogsPeso.sort((a,b) => {
+                    if(a.PesoMax > b.PesoMax) return 1
+                    else if(a.PesoMax < b.PesoMax) return -1
+                    else return 0
+                })
+            }else if(action.payload === 'des'){
+                dogsPeso.sort((a,b) => {
+                    if(a.PesoMax > b.PesoMax) return -1
+                    else if(a.PesoMax < b.PesoMax) return 1
+                    else return 0
+                })
+            }
+            return{
+                ...state,
+                dogsfiltrados : dogsPeso
+            }
         case ORDENAR_ALFABETICO:
             return{}
         case CREAR_DOG:
