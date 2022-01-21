@@ -29,7 +29,7 @@ function InputBusqueda({setCurrentPage,setsearch, temp, razas}){
             </select>
             <select name="select" onChange={e => onSearchChange(e)}>
                 <option value=''>Raza</option>
-                {Raza.map(e => (
+                {razas.map(e => (
                     <option value={e.Nombre}>{e.Nombre}</option>
                 ))}
             </select>
