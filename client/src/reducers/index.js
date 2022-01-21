@@ -25,7 +25,11 @@ function rootReducer(state = estadoInicial, action){
         case OBTENER_TEMPERAMENTOS:
             return {
                 ...state,
-                temperamentos: action.payload
+                temperamentos: action.payload.sort((a,b) => {
+                    if(a.Nombre > b.Nombre) return 1
+                    else if(a.Nombre < b.Nombre) return -1
+                    else return 0
+                 })
             }
         case OBTENER_INFO_RAZA:
             return {
