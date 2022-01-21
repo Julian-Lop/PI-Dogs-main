@@ -9,8 +9,8 @@ exports.verTemperamentos =  (req,res)=>{
         axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${APIKEY}`)
         .then(async response =>{
             let arrayTemp = response.data.map(dog => {
-                return dog.temperament}
-            ).toString().split(', ').toString().split(',')
+                return dog.temperament
+            }).toString().split(', ').toString().split(',')
 
             let arraySplit = []
             arrayTemp.map( async element => {

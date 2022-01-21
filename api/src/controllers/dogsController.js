@@ -4,7 +4,14 @@ const  {APIKEY } = process.env
 const {Razas,Temperamentos} = require('../db.js')
 
 const allDogs = async () => {
-    let dogsDB = await Razas.findAll({attributes:['ID','Nombre','Altura','Peso','Vida']})
+    let dogsDB = await Razas.findAll({attributes:['ID','Nombre','Altura','Peso','Vida'], 
+    include: {
+        model: Temperamentos,
+        attributes: ['Nombre'],
+        throught: {
+            attributes: []
+        }
+    }})
     let dogsApi = 
     axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${APIKEY}`)
     .then(response =>{
@@ -12,14 +19,17 @@ const allDogs = async () => {
             return {
                     ID: dog.id,
                     Nombre : dog.name,
-                    Peso: dog.weight.metric,
-                    Altura : dog.height.metric,
+                    PesoMin : dog.weight.metric.split(' - ')[0],
+                    PesoMax : dog.weight.metric.split(' - ')[1],
+                    AlturaMin : dog.height.metric.split(' - ')[0],
+                    AlturaMax : dog.height.metric.split(' - ')[1],
                     Temperamento : dog.temperament,
-                    Vida : dog.life_span,
+                    Vida : dog.life_span.split(' ')[0],
                     image : dog.image.url
                     }
         })
     })
+
     let dogsApiAwait = await dogsApi
     let dogsAll = dogsApiAwait.concat(dogsDB)
     return dogsAll
@@ -46,8 +56,10 @@ exports.verDogs = async (req,res)=> {
             returnDogs.map(dog =>{
                 if(dog.Nombre.includes(name)){
                     return queryDogs.push({
+                        ID : dog.ID,
                         Nombre : dog.Nombre,
-                        Peso : dog.Peso,
+                        PesoMin : dog.PesoMin,
+                        PesoMax : dog.PesoMax,
                         Temperamento : dog.Temperamento,
                         image : dog.image
                     })
@@ -67,9 +79,11 @@ exports.verDogdRaza = async (req,res)=>{
             if(dog.ID === Number(idRaza)){
                 return queryDogs.push({
                                     Nombre : dog.Nombre,
-                                    Peso : dog.Peso,
+                                    PesoMin : dog.PesoMin,
+                                    PesoMax : dog.PesoMax,
                                     Temperamento : dog.Temperamento,
-                                    Altura : dog.Altura,
+                                    AlturaMin : dog.AlturaMin,
+                                    AlturaMax : dog.AlturaMax,
                                     Vida : dog.Vida,
                                     image : dog.image
                                     })
@@ -86,19 +100,21 @@ exports.verDogdRaza = async (req,res)=>{
 
 exports.sendDog = async (req,res)=>{
     try {
-        const {id,nombre,altura,peso,vida,temperamentos} = req.body
+        const {id,nombre,alturamin,alturamax,pesomin,pesomax,vida,temperamentos} = req.body
         const RazaCreada = await Razas.create({
                 ID: id,
                 Nombre: nombre,
-                Altura: altura,
-                Peso: peso,
+                AlturaMin : alturamin,
+                AlturaMax : alturamax,
+                PesoMin : pesomin,
+                PesoMax : pesomax,
                 Vida: vida
         })
         if(temperamentos.length > 1){
             temperamentos.map(async temp => {
                 const TemperamentoCreado = await Temperamentos.findAll({
                     where:{
-                        Nombre: temperamentos
+                        Nombre: temp
                     }}
                 )
                 RazaCreada.addTemperamentos(TemperamentoCreado)
