@@ -1,7 +1,6 @@
 export const OBTENER_DOGS = 'OBTENER_dOGS'
 export const OBTENER_TEMPERAMENTOS = 'OBTENER_TEMPERAMENTOS'
 export const OBTENER_INFO_RAZA = 'OBTENER_INFO_RAZA'
-export const FALLA_BUSQUEDA = 'FALLA_BUSQUEDA'
 export const FILTRAR_TEMPERAMENTO = 'FILTRAR_TEMPERAMENTO'
 export const FILTRAR_RAZA = 'FILTRAR_RAZA'
 export const ORDENAR_PESO = 'ORDENAR_PESO'
@@ -25,9 +24,7 @@ export function getAllDogs(dogname){
                 return dispatch({type: OBTENER_DOGS, payload: json})
             }
         } catch (error) {
-            let falla = fetch(`http://localhost:3001/dogs?name=${dogname}`)
-            .then(response => response.json())
-            return dispatch({type: FALLA_BUSQUEDA, payload: falla})
+            console.log(error)
         }
     }
 }
@@ -41,7 +38,7 @@ export function getTemperaments(){
 }
 
 export function getDetail(idRaza){
-    return async function(dispatch){
+    return function(dispatch){
         try {
             if(idRaza){
                 return fetch(`http://localhost:3001/dogs/${idRaza}`)
@@ -58,8 +55,8 @@ export function getDetail(idRaza){
     }
 }
 
-export function filterTemperament(temperamento){
-    return {type: FILTRAR_TEMPERAMENTO, payload:temperamento}
+export function filterTemperament(temeperamento){
+    return {type: FILTRAR_TEMPERAMENTO, payload: temeperamento}
 }
 
 export function filterRaza(idRaza){
