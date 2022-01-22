@@ -102,7 +102,6 @@ exports.sendDog = async (req,res)=>{
     try {
         const {id,nombre,alturamin,alturamax,pesomin,pesomax,vida,temperamentos} = req.body
         const RazaCreada = await Razas.create({
-                ID: id,
                 Nombre: nombre,
                 AlturaMin : alturamin,
                 AlturaMax : alturamax,
