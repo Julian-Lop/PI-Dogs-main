@@ -21,8 +21,10 @@ function Homepage(){
     const numeroDogs = search === '' ? statedogs.slice(currentPage,currentPage+8) : stateFilter.slice(currentPage,currentPage+8)
 
     const nextPage = () => {
-        if(statedogs.slice(currentPage+8,currentPage+16).length > 0){
-            if(stateFilter.slice(currentPage+8,currentPage+16).length > 0)
+        if(statedogs.slice(currentPage+8,currentPage+16).length > 0 && stateFilter.length < 1){
+            setCurrentPage(currentPage+8)
+        }
+        if(stateFilter.slice(currentPage+8,currentPage+16).length > 0 && statedogs.slice(currentPage+8,currentPage+16).length > 0){
             setCurrentPage(currentPage+8)
         }
     }
