@@ -56,15 +56,31 @@ function rootReducer(state = estadoInicial, action){
             let dogsPeso = !state.dogsfiltrados.length ? state.todosLosdogs : state.dogsfiltrados
             if(action.payload === 'asc'){
                 dogsPeso.sort((a,b) => {
-                    if(a.PesoMax > b.PesoMax) return 1
-                    else if(a.PesoMax < b.PesoMax) return -1
-                    else return 0
+                    if(a.PesoMax && b.PesoMax){
+                        if(a.PesoMax > b.PesoMax) return 1
+                        else if(a.PesoMax < b.PesoMax) return -1
+                        else return 0
+                    }else if(!a.PesoMax || !b.PesoMax){
+                        let pesoA = !a.PesoMax || !a.PesoMin ? a.PesoMax+a.PesoMin : a.PesoMax && a.PesoMin ? a.PesoMax : 100
+                        let pesoB = !b.PesoMax || !b.PesoMin ? b.PesoMax+b.PesoMin : b.PesoMax && b.PesoMin ? b.PesoMax : 100 
+                        if(pesoA > pesoB) return 1
+                        else if(pesoA < pesoB) return -1
+                        else return 0
+                    }
                 })
             }else if(action.payload === 'des'){
                 dogsPeso.sort((a,b) => {
-                    if(a.PesoMax > b.PesoMax) return -1
-                    else if(a.PesoMax < b.PesoMax) return 1
-                    else return 0
+                    if(a.PesoMax && b.PesoMax){
+                        if(a.PesoMax > b.PesoMax) return -1
+                        else if(a.PesoMax < b.PesoMax) return 1
+                        else return 0
+                    }else if(!a.PesoMax || !b.PesoMax){
+                        let pesoA = !a.PesoMax || !a.PesoMin ? a.PesoMax+a.PesoMin : a.PesoMax && a.PesoMin ? a.PesoMax : 100
+                        let pesoB = !b.PesoMax || !b.PesoMin ? b.PesoMax+b.PesoMin : b.PesoMax && b.PesoMin ? b.PesoMax : 100 
+                        if(pesoA > pesoB) return -1
+                        else if(pesoA < pesoB) return 1
+                        else return 0
+                    }
                 })
             }
             return{
@@ -72,7 +88,24 @@ function rootReducer(state = estadoInicial, action){
                 dogsfiltrados : dogsPeso
             }
         case ORDENAR_ALFABETICO:
-            return{}
+            let dogsNombre = !state.dogsfiltrados.length ? state.todosLosdogs : state.dogsfiltrados
+            if(action.payload === 'az'){
+                dogsNombre.sort((a,b) => {
+                    if(a.Nombre > b.Nombre) return 1
+                    else if (a.Nombre < b.Nombre) return -1
+                    else return 0
+                })
+            }else if(action.payload === 'za'){
+                dogsNombre.sort((a,b) => {
+                    if(a.Nombre > b.Nombre) return -1
+                    else if(a.Nombre < b.Nombre) return 1
+                    else return 0
+                })
+            }
+            return{
+                ...state,
+                dogsfiltrados: dogsNombre
+            }
         case CREAR_DOG:
             return{}              
         default:

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import {getAllDogs,getTemperaments} from '../actions/index.js'
 import InputBusqueda from './InputBusqueda.js'
-
+import {Link} from 'react-router-dom'
 
 function Homepage(){
     const statedogs = useSelector((state)=> state.todosLosdogs)
     const stateFilter = useSelector((state)=> state.dogsfiltrados)
     const stateTemperaments = useSelector((state)=> state.temperamentos)
     const dispatch = useDispatch()
-
+    
     const [currentPage, setCurrentPage] = useState(0)
     const [search, setsearch] = useState('');
 
@@ -59,8 +59,10 @@ function Homepage(){
             <button onClick={prevPage}>Anterior</button>
             <button onClick={nextPage}>Siguiente</button>
             <hr/> 
-            {numeroDogs? numeroDogs.map(elemento => (
-                <div key={elemento.ID}><h2>{elemento.Nombre}</h2>
+            { search && stateFilter.length < 1 ? <h2>Loading...</h2>: null}
+            { !search && statedogs.length < 1 ? <h2>Loading...</h2>: null}
+            {numeroDogs ? numeroDogs.map(elemento => (
+                <div key={elemento.ID}><Link to={`/dogDetail/${elemento.ID}`}><h2>{elemento.Nombre}</h2></Link>
                     <h3>Peso: {elemento.PesoMin} - {elemento.PesoMax} Kg</h3>
                     <h3>Temperamento: {elemento.Temperamento}</h3>
                     <img src={elemento.image} height="200" width="200"/>
