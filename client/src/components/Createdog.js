@@ -1,8 +1,17 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import {getTemperaments} from '../actions/index.js'
+import '../css/styles.css'
 
 function Createdog(){
+    const dispatch = useDispatch()
+    const stateTemp = useSelector((state)=> state.temperamentos)
 
-    const [temp, setTemp] = useState('')
+    useEffect(()=>{
+        dispatch(getTemperaments())
+    },[dispatch])
+
+    const [temp, setTemp] = useState([])
     const [datos, setDatos] = useState({
         nombre: '',
         alturamin: 0,
@@ -20,7 +29,12 @@ function Createdog(){
     }
 
     const handleOnchangeTemp= (e) => {
-        setTemp(temp+e)
+        let tem = temp.indexOf(e)
+        if(tem === -1){
+            setTemp(old => [...old,e]);
+        }else{
+            temp.splice(tem,1)
+        }
         console.log(temp)
     }
 
@@ -51,11 +65,11 @@ function Createdog(){
                 value={datos.vida} onChange={e => handleOnchange(e)}/>
                 <br/>
                 <label>Seleccione los temperamentos</label>
-                <li>
-                    <input type="checkbox" value={1} id="temperamentos" onChange={e => handleOnchangeTemp(e.target.value)}/>
-                    <input type="checkbox" value={2} id="temperamentos" onChange={e => handleOnchangeTemp(e.target.value)}/>
-                    <input type="checkbox" value={3} id="temperamentos" onChange={e => handleOnchangeTemp(e.target.value)}/>
-                </li>
+                <select name="select" onChange={e => handleOnchangeTemp(e.target.value)}>
+                    {stateTemp.map(temp => (
+                        <option value={temp.Nombre} key={temp.ID}>{temp.Nombre}</option>
+                    ))}
+                </select>
                 <br/>
                 <input type="submit" value="enviar"/>
             </form>
