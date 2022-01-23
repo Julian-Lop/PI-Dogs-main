@@ -100,7 +100,7 @@ exports.verDogdRaza = async (req,res)=>{
 
 exports.sendDog = async (req,res)=>{
     try {
-        const {id,nombre,alturamin,alturamax,pesomin,pesomax,vida,temperamentos} = req.body
+        const {nombre,alturamin,alturamax,pesomin,pesomax,vida,temperamentos} = req.body
         const RazaCreada = await Razas.create({
                 Nombre: nombre,
                 AlturaMin : alturamin,
@@ -109,7 +109,7 @@ exports.sendDog = async (req,res)=>{
                 PesoMax : pesomax,
                 Vida: vida
         })
-        if(temperamentos.length > 1){
+        if(Array.isArray(temperamentos)){
             temperamentos.map(async temp => {
                 const TemperamentoCreado = await Temperamentos.findAll({
                     where:{
