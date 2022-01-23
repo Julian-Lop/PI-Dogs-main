@@ -11,6 +11,7 @@ function Createdog(){
         dispatch(getTemperaments())
     },[dispatch])
 
+    const [error, setError] = useState({})
     const [temp, setTemp] = useState([])
     const [datos, setDatos] = useState({
         nombre: '',
@@ -21,10 +22,49 @@ function Createdog(){
         vida: 0,
     })
 
+    const validarCampos = (e) => {
+        let error = {
+            nombre: '',
+            alturamin: '',
+            alturamax: '',
+            pesomin: '',
+            pesomax: '',
+            vida: '',
+        }
+        if(!e.nombre){
+            error.nombre = 'Debe contener un nombre'
+        }else if(!(/^[a-zA-Z]+$/.test(e.nombre))){
+            error.nombre = 'Debe contener solo letras'
+        }
+        if(!e.alturamin || e.alturamin < 1){
+            error.alturamin = 'Debe contener una altura min valida'
+        }
+        if(!e.alturamax || e.alturamax < e.alturamin){
+            error.alturamax = "Deber contener una altura max valida"
+        }
+        if(!e.pesomin || e.pesomin < 1){
+            error.pesomin = "Debe contener un peso min valido"
+        }
+        if(!e.pesomax || e.pesomax < e.pesomin){
+            error.pesomax = "Debe contener un peso max valido"
+        }
+        if(!e.vida){
+            error.vida = "Debe contener un tiempo de vida valido"
+        }else if(e.vida < 1){
+            error.vida = "Debe contener un tiempo de vida valido"
+        }
+
+        return error
+    }
+
     const handleOnchange = (e) => {
         setDatos({...datos,
             [e.target.id]: e.target.value
         })
+
+        setError(validarCampos({...datos,
+            [e.target.id]: e.target.value
+        }))
         console.log(datos)
     }
 
@@ -35,8 +75,9 @@ function Createdog(){
         }else{
             temp.splice(tem,1)
         }
-        console.log(temp)
     }
+
+    
 
     return (
         <div className="Createdog">
@@ -70,6 +111,9 @@ function Createdog(){
                         <option value={temp.Nombre} key={temp.ID}>{temp.Nombre}</option>
                     ))}
                 </select>
+                <br/>
+                <textarea id="textarea" rows="10" cols="50" value={error.nombre+'|'+error.alturamin+'|'+
+                error.alturamax+'|'+error.pesomin+'|'+error.pesomax+'|'+error.vida} disabled>Write something here</textarea>
                 <br/>
                 <input type="submit" value="enviar"/>
             </form>
