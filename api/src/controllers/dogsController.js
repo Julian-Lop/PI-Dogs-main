@@ -76,7 +76,7 @@ exports.verDogdRaza = async (req,res)=>{
         const returnDogs = await allDogs()
         let queryDogs = []
         returnDogs.map(dog =>{
-            if(dog.ID === Number(idRaza)){
+            if(dog.ID.toString() === idRaza.toString()){
                 return queryDogs.push({
                                     Nombre : dog.Nombre,
                                     PesoMin : dog.PesoMin,
