@@ -1,3 +1,4 @@
+import axios from 'axios';
 export const OBTENER_DOGS = 'OBTENER_dOGS'
 export const OBTENER_TEMPERAMENTOS = 'OBTENER_TEMPERAMENTOS'
 export const OBTENER_INFO_RAZA = 'OBTENER_INFO_RAZA'
@@ -6,6 +7,7 @@ export const FILTRAR_RAZA = 'FILTRAR_RAZA'
 export const ORDENAR_PESO = 'ORDENAR_PESO'
 export const ORDENAR_ALFABETICO = 'ORDENAR_ALFABETICO'
 export const CREAR_DOG = 'CREAR_DOG'
+
 
 export function getAllDogs(dogname){
     return async function(dispatch){
@@ -73,7 +75,8 @@ export function organizeByAlphabet(opcionAlphabet){
 
 export function createDog(attributesDog){
     return async function(dispatch){
-        let createdDog = await fetch(`http://localhost:3001/dog/${attributesDog}`)
+        let createdDog = await axios.post(`http://localhost:3001/dog`,attributesDog)
+        console.log(createDog)
         return createdDog
     } 
 }

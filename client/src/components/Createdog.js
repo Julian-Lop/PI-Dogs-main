@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import {getTemperaments} from '../actions/index.js'
+import {getTemperaments,createDog} from '../actions/index.js'
 import '../css/styles.css'
 
 function Createdog(){
@@ -20,17 +20,11 @@ function Createdog(){
         pesomin: 0,
         pesomax: 0,
         vida: 0,
+        temperamentos : []
     })
 
     const validarCampos = (e) => {
-        let error = {
-            nombre: '',
-            alturamin: '',
-            alturamax: '',
-            pesomin: '',
-            pesomax: '',
-            vida: '',
-        }
+        let error = {}
         if(!e.nombre){
             error.nombre = 'Debe contener un nombre'
         }else if(!(/^[a-zA-Z]+$/.test(e.nombre))){
@@ -75,16 +69,28 @@ function Createdog(){
         }else{
             temp.splice(tem,1)
         }
+        setDatos({...datos, temperamentos: temp})
     }
 
+    const submitDatos = () => {
+        if(error.hasOwnProperty('nombre') || error.hasOwnProperty('alturamin')
+        || error.hasOwnProperty('alturamax') || error.hasOwnProperty('pesomin') || 
+        error.hasOwnProperty('pesomax') || error.hasOwnProperty('vida')){
+            console.log('Hay errores en los datos')
+        }else{
+            dispatch(createDog(datos))
+            console.log('enviado')
+        }
+    }
     
 
     return (
         <div className="Createdog">
             <h1>Soy el CreateDog</h1>
-            <form onSubmit={(e) => {
+            <form type onSubmit={(e) => {
                 e.preventDefault();
-            }}>
+                submitDatos()
+            }} method="post" >
                 <label>Nombre de la raza: </label>
                 <input type="text" id="nombre" placeholder="Nombre de la raza" 
                 value={datos.nombre} onChange={e => handleOnchange(e)}/>
@@ -113,7 +119,7 @@ function Createdog(){
                 </select>
                 <br/>
                 <textarea id="textarea" rows="10" cols="50" value={error.nombre+'|'+error.alturamin+'|'+
-                error.alturamax+'|'+error.pesomin+'|'+error.pesomax+'|'+error.vida} disabled>Write something here</textarea>
+                error.alturamax+'|'+error.pesomin+'|'+error.pesomax+'|'+error.vida+'|'+error.temperamentos} disabled>Write something here</textarea>
                 <br/>
                 <input type="submit" value="enviar"/>
             </form>
