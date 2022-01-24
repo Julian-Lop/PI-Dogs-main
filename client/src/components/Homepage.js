@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getAllDogs,getTemperaments} from '../actions/index.js'
 import InputBusqueda from './InputBusqueda.js'
 import {Link} from 'react-router-dom'
+import Carddog from "./Carddog.js";
+import '../css/styles.css'
 
 function Homepage(){
     const statedogs = useSelector((state)=> state.todosLosdogs)
@@ -47,7 +49,6 @@ function Homepage(){
 
     return (
         <div className="Homepage">
-            <h1>HomePage: Listado de Dogs</h1>
             {/* <input type="text" value={search} onChange={onSearchChange}/>
             <hr/>*/}
             <InputBusqueda setCurrentPage={setCurrentPage} setsearch={setsearch} temp={stateTemperaments}/>
@@ -57,19 +58,16 @@ function Homepage(){
                     <option value={e.Nombre}>{e.Nombre}</option>
                 ))}
             </select> */}
-            <hr/>
+            <div className="botonesPaginado">
             <button onClick={prevPage}>Anterior</button>
             <button onClick={nextPage}>Siguiente</button>
-            <hr/> 
+            </div> 
             { search && stateFilter.length < 1 ? <h2>Loading...</h2>: null}
             { !search && statedogs.length < 1 ? <h2>Loading...</h2>: null}
             {numeroDogs ? numeroDogs.map(elemento => (
-                <div key={elemento.ID}><Link to={`/dogDetail/${elemento.ID}`}><h2>{elemento.Nombre}</h2></Link>
-                    <h3>Peso: {elemento.PesoMin} - {elemento.PesoMax} Kg</h3>
-                    <h3>Temperamento: {elemento.Temperamento}</h3>
-                    <img src={elemento.image} height="200" width="200"/>
-                    <hr/>
-                </div>
+                    <Carddog id={elemento.ID} raza={elemento.Nombre} 
+                    pesomin={elemento.PesoMin} pesomax={elemento.PesoMax} 
+                    temperamento={elemento.Temperamento} image={elemento.image}/>
             )) : <p>No hay perros</p>
 
             }
