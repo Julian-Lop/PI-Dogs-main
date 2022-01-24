@@ -4,14 +4,27 @@ const  {APIKEY } = process.env
 const {Razas,Temperamentos} = require('../db.js')
 
 const allDogs = async () => {
-    let dogsDB = await Razas.findAll({attributes:['ID','Nombre','AlturaMin','AlturaMax','PesoMin','PesoMax','Vida'], 
+    let dogsDB = await Razas.findAll({
+    attributes:['ID','Nombre','AlturaMin','AlturaMax','PesoMin','PesoMax','Vida'], 
     include: {
         model: Temperamentos,
         attributes: ['Nombre'],
-        throught: {
-            attributes: []
+        through: {
+            attributes : []
         }
     }})
+    let dogsDBtemp = await dogsDB.map(dog => {
+        return {
+            ID: dog.ID,
+            Nombre: dog.Nombre,
+            AlturaMin: dog.AlturaMin,
+            AlturaMax: dog.AlturaMax,
+            PesoMin: dog.PesoMin,
+            PesoMax: dog.PesoMax,
+            Vida: dog.Vida,
+            Temperamento: dog.Temperamentos.map(e => {return e.Nombre}).toString()
+        }
+    })
     let dogsApi = 
     axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${APIKEY}`)
     .then(response =>{
@@ -31,7 +44,7 @@ const allDogs = async () => {
     })
 
     let dogsApiAwait = await dogsApi
-    let dogsAll = dogsApiAwait.concat(dogsDB)
+    let dogsAll = dogsApiAwait.concat(dogsDBtemp)
     return dogsAll
 }
 
