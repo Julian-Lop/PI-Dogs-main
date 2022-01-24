@@ -86,43 +86,64 @@ function Createdog(){
 
     return (
         <div className="Createdog">
-            <h1>Soy el CreateDog</h1>
-            <form type onSubmit={(e) => {
-                e.preventDefault();
-                submitDatos()
-            }} method="post" >
-                <label>Nombre de la raza: </label>
-                <input type="text" id="nombre" placeholder="Nombre de la raza" 
-                value={datos.nombre} onChange={e => handleOnchange(e)}/>
-                <br/>
-                <label>Altura: </label>
-                <input type="number" id="alturamin" placeholder="Altura mínima"
-                value={datos.alturamin} onChange={e => handleOnchange(e)}/>
-                <input type="number" id="alturamax" placeholder="Altura máxima"
-                value={datos.alturamax} onChange={e => handleOnchange(e)}/>
-                <br/>
-                <label>Peso: </label>
-                <input type="number" id="pesomin" placeholder="Peso mínimo"
-                value={datos.pesomin} onChange={e => handleOnchange(e)}/>
-                <input type="number" id="pesomax" placeholder="Peso máximo"
-                value={datos.pesomax} onChange={e => handleOnchange(e)}/>
-                <br/>
-                <label>Tiempo de vida: </label>
-                <input type="number" id="vida" placeholder="tiempo de vida"
-                value={datos.vida} onChange={e => handleOnchange(e)}/>
-                <br/>
-                <label>Seleccione los temperamentos</label>
-                <select name="select" onChange={e => handleOnchangeTemp(e.target.value)}>
-                    {stateTemp.map(temp => (
-                        <option value={temp.Nombre} key={temp.ID}>{temp.Nombre}</option>
-                    ))}
-                </select>
-                <br/>
-                <textarea id="textarea" rows="10" cols="50" value={error.nombre+'|'+error.alturamin+'|'+
-                error.alturamax+'|'+error.pesomin+'|'+error.pesomax+'|'+error.vida+'|'+error.temperamentos} disabled>Write something here</textarea>
-                <br/>
-                <input type="submit" value="enviar"/>
-            </form>
+            <h1>CreateDog</h1>
+            <div className="contenedor-formulario">
+                <form type onSubmit={(e) => {
+                    e.preventDefault();
+                    submitDatos()
+                }} method="post" >
+                    <div className="contenedorinputs">
+                        <div className="inputnombre">
+                            <input type="text" id="nombre" placeholder="Nombre de la raza" 
+                            value={datos.nombre} onChange={e => handleOnchange(e)}/>
+                        </div>
+                    
+                        <div className="input-altura">
+                            <label>Altura: </label>
+                            <br/>
+                            <input type="number" id="alturamin" placeholder="Alturamin"
+                            value={datos.alturamin} onChange={e => handleOnchange(e)}/>
+                            <input type="number" id="alturamax" placeholder="Altura máxima"
+                            value={datos.alturamax} onChange={e => handleOnchange(e)}/>
+                        </div>
+                        
+                        <div className="input-peso">
+                            <label>Peso: </label>
+                            <br/>
+                            <input type="number" id="pesomin" placeholder="Peso mínimo"
+                            value={datos.pesomin} onChange={e => handleOnchange(e)}/>
+                            <input type="number" id="pesomax" placeholder="Peso máximo"
+                            value={datos.pesomax} onChange={e => handleOnchange(e)}/>
+                        </div>
+                        
+                        <div className="input-temperamento">
+                            <div>
+                                <label>Seleccione los temperamentos</label>
+                                <select name="select" onChange={e => handleOnchangeTemp(e.target.value)}>
+                                    {stateTemp.map(temp => (
+                                        <option value={temp.Nombre} key={temp.ID}>{temp.Nombre}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <textarea id="textarea" value={error.nombre+'|'+error.alturamin+'|'+
+                                error.alturamax+'|'+error.pesomin+'|'+error.pesomax+'|'+error.vida+'|'+error.temperamentos} 
+                                disabled>Write something here</textarea>
+                            </div>
+                            <label>Tiempo de vida: </label>
+                            <br/>
+                            <div>
+                                <input type="number" id="vida" placeholder="tiempo de vida"
+                                value={datos.vida} onChange={e => handleOnchange(e)}/>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input type="submit" value="enviar"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

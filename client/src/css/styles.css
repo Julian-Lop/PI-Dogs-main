@@ -13,8 +13,48 @@
   font-size: 18px;
   border-radius: 10px;
 }
+.Createdog {
+  height: 700px;
+  background: whitesmoke;
+  margin: 5%;
+  border-radius: 20px;
+  text-align: center;
+}
+.Createdog .contenedor-formulario {
+  height: 100%;
+  width: 100%;
+}
+.Createdog .contenedor-formulario .contenedorinputs {
+  display: flex;
+  flex-direction: column;
+}
+.Createdog .contenedor-formulario .contenedorinputs input {
+  font-size: 20px;
+  border-radius: 15px;
+}
+.Createdog .contenedor-formulario .contenedorinputs select {
+  font-size: 20px;
+  border-radius: 15px;
+}
+.Createdog .contenedor-formulario .contenedorinputs textarea {
+  font-size: 18px;
+  border-radius: 15px;
+  width: 60%;
+}
+.Createdog .contenedor-formulario .contenedorinputs div {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.Createdog .contenedor-formulario .contenedorinputs .input-altura input {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.Createdog .contenedor-formulario .contenedorinputs .input-peso input {
+  margin-left: 2%;
+  margin-right: 2%;
+}
 .Carddog {
-  background: snow;
+  background: #EEEEEE;
   border-radius: 15px;
   width: 400px;
   height: 400px;
@@ -33,6 +73,10 @@
 .Carddog .info {
   text-align: center;
 }
+.Carddog .info a {
+  text-decoration: none;
+  color: black;
+}
 .InputBusqueda {
   margin-top: 20px;
   margin-bottom: 5%;
@@ -50,4 +94,13 @@
 .InputBusqueda select {
   font-size: 18px;
   border-radius: 10px;
+}
+.Paginado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.Paginado div {
+  margin-top: 5%;
+  margin-bottom: 5%;
 }

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import {getAllDogs,getTemperaments} from '../actions/index.js'
 import InputBusqueda from './InputBusqueda.js'
-import {Link} from 'react-router-dom'
 import Carddog from "./Carddog.js";
+import Paginado from "./Paginado.js"
 import '../css/styles.css'
 
 function Homepage(){
@@ -64,13 +64,12 @@ function Homepage(){
             </div> 
             { search && stateFilter.length < 1 ? <h2>Loading...</h2>: null}
             { !search && statedogs.length < 1 ? <h2>Loading...</h2>: null}
-            {numeroDogs ? numeroDogs.map(elemento => (
+            <Paginado arraydogs={numeroDogs}/>
+            {/* {numeroDogs ? numeroDogs.map(elemento => (
                     <Carddog id={elemento.ID} raza={elemento.Nombre} 
                     pesomin={elemento.PesoMin} pesomax={elemento.PesoMax} 
                     temperamento={elemento.Temperamento} image={elemento.image}/>
-            )) : <p>No hay perros</p>
-
-            }
+            )) : <p>No hay perros</p>} */}
         </div>
     )
 }
