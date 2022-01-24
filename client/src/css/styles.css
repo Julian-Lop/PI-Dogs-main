@@ -13,6 +13,9 @@
   font-size: 18px;
   border-radius: 10px;
 }
+.contenedor-detalle {
+  display: flex;
+}
 .Createdog {
   height: 700px;
   background: whitesmoke;

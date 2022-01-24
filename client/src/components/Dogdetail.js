@@ -16,17 +16,21 @@ function Dogdetail(){
     return (
         <div className="Dogdetail">
             <h1>Detalle de raza</h1>
-            {stateraza.length < 1 ? <h2>Loading...</h2>: stateraza.map(e => (
-                <div>
-                    <h2>{e.Nombre}</h2>
-                    <h3>Altura: {e.AlturaMin} - {e.AlturaMax} Cm</h3>
-                    <h3>Peso: {e.PesoMin} - {e.PesoMax} Kg</h3>
-                    <h3>Temperamento: {e.Temperamento}</h3>
-                    <h3>Años de vida: {e.Vida} años</h3>
-                    <img src={e.image} width="350" height="350"/>
-                </div>
-            ))}
-            
+                {stateraza.length < 1 ? <h2>Loading...</h2>: stateraza.map(e => (
+                    <div className="contenedor-detalle">
+                        <div>
+                            <h2>{e.Nombre}</h2>
+                            <h3>Altura: {e.AlturaMin} - {e.AlturaMax} Cm</h3>
+                            <h3>Peso: {e.PesoMin} - {e.PesoMax} Kg</h3>
+                            <h3>Temperamento: {e.Temperamento}</h3>
+                            <h3>Años de vida: {e.Vida} años</h3>
+                        </div>
+                        <div>
+                            <img src={e.image} width="350" height="350"/>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
