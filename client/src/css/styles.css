@@ -14,7 +14,17 @@
   border-radius: 10px;
 }
 .contenedor-detalle {
+  background: #EEEEEE;
+  width: 90%;
+  margin: 5%;
+  border-radius: 20px;
   display: flex;
+}
+.contenedor-detalle img {
+  border-radius: 20px;
+}
+.contenedor-detalle div {
+  margin: 5%;
 }
 .Createdog {
   height: 700px;
