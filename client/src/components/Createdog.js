@@ -11,7 +11,14 @@ function Createdog(){
         dispatch(getTemperaments())
     },[dispatch])
 
-    const [error, setError] = useState({})
+    const [error, setError] = useState({
+        nombre:'Debe contener un nombre',
+        alturamin: 'Debe contener una altura min valida',
+        alturamax : "Deber contener una altura max valida",
+        pesomin : "Debe contener un peso min valido",
+        pesomax : "Debe contener un peso max valido",
+        vida : "Debe contener un tiempo de vida valido"
+    })
     const [temp, setTemp] = useState([])
     const [datos, setDatos] = useState({
         nombre: '',
