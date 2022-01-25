@@ -1,7 +1,48 @@
 .Landingpage {
-  background: #EEEEEE;
   text-align: center;
-  margin: 10%;
+  height: 960px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.Landingpage .glass-left {
+  height: 100%;
+  width: 50%;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  background: #EEEEEE;
+  opacity: 0.6;
+  filter: blur(5px);
+}
+.Landingpage .transparent-right {
+  height: 100%;
+  width: 50%;
+}
+.Landingpage .contenedor {
+  position: absolute;
+  font-size: 45px;
+  margin-top: 200px;
+}
+.Landingpage .contenedor button {
+  background-color: white;
+  font-size: 30px;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  border-style: none;
+  cursor: pointer;
+}
+.Landingpage .contenedor .contenedor-texto {
+  display: flex;
+}
+.Landingpage .contenedor .contenedor-texto .right-text {
+  margin-left: 5px;
+  text-align: start;
+  color: white;
+}
+.Landingpage .contenedor .contenedor-texto .left-text {
+  margin-left: 45px;
+  margin-right: 5px;
+  text-align: end;
 }
 .Homepage .botonesPaginado {
   display: flex;

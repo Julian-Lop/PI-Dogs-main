@@ -1,3 +1,10 @@
+body{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-image: url('./image/labrador-retriever-g9f8027518_1920.jpg');
+}
+
 .App {
   text-align: center;
 }
