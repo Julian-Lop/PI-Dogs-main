@@ -30,7 +30,7 @@ function Dogdetail(){
                         </div>
                     </div>
                 ))}
-            </div>
+        </div>
     )
 }
 
