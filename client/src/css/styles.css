@@ -1,48 +1,64 @@
 .Landingpage {
   text-align: center;
-  height: 960px;
+  height: 967px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
 }
 .Landingpage .glass-left {
+  border-radius: 0 5% 5% 0;
+  font-size: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
   height: 100%;
-  width: 50%;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
-  background: #EEEEEE;
-  opacity: 0.6;
-  filter: blur(5px);
+  width: 40%;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 8px 32px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  mix-blend-mode: screen;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.Landingpage .glass-left h1 {
+  margin-top: -100px;
 }
 .Landingpage .transparent-right {
   height: 100%;
   width: 50%;
+  font-size: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
-.Landingpage .contenedor {
+.Landingpage .transparent-right h1 {
+  margin-top: -100px;
+}
+.Landingpage .transparent-right .contenedor {
   position: absolute;
   font-size: 45px;
-  margin-top: 200px;
+  margin-top: -850px;
+  margin-left: 45%;
 }
-.Landingpage .contenedor button {
+.Landingpage .transparent-right .contenedor button {
   background-color: white;
   font-size: 30px;
-  width: 200px;
-  height: 50px;
-  border-radius: 20px;
+  width: 220px;
+  height: 60px;
+  border-radius: 25px;
   border-style: none;
   cursor: pointer;
+  font-weight: bold;
+  mix-blend-mode: screen;
 }
-.Landingpage .contenedor .contenedor-texto {
-  display: flex;
-}
-.Landingpage .contenedor .contenedor-texto .right-text {
-  margin-left: 5px;
-  text-align: start;
+.Landingpage .transparent-right .contenedor button:hover {
+  font-weight: bold;
+  background-color: black;
   color: white;
+  mix-blend-mode: multiply;
 }
-.Landingpage .contenedor .contenedor-texto .left-text {
-  margin-left: 45px;
-  margin-right: 5px;
-  text-align: end;
+.Landingpage .transparent-right .invisible {
+  margin-bottom: 505px;
 }
 .Homepage .botonesPaginado {
   display: flex;

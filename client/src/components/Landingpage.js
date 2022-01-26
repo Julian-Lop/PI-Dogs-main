@@ -6,22 +6,17 @@ function Landingpage(){
     return (
         <div className='Landingpage'>
             <div className='glass-left'>
+                <h1>PROYECTO</h1>
+                <h1>INDIVI</h1>
             </div>
             <div className='transparent-right'>
+                <h1 className='invisible'></h1>
+                <h1>DUAL</h1>
+                <h1>DOGS</h1>
+                <div className='contenedor'>
+                    <a href="/home"><button>home</button></a>
+                </div> 
             </div>
-            <div className='contenedor'>
-                <div className='contenedor-texto'>
-                    <div className='left-text'>
-                        <h1>Proyecto</h1>
-                        <h1>Do</h1>
-                    </div>
-                    <div className='right-text'>
-                        <h1>Individual</h1>
-                        <h1>gs</h1>
-                    </div>
-                </div>
-                <a href="/home"><button>home</button></a>
-            </div> 
         </div>
     )
 }
