@@ -79,8 +79,7 @@ exports.verDogs = async (req,res)=> {
                 }   
             })
             res.status(200).json(queryDogs)
-    } 
-            
+    }        
 }
 
 exports.verDogdRaza = async (req,res)=>{
@@ -112,38 +111,46 @@ exports.verDogdRaza = async (req,res)=>{
 }
 
 exports.sendDog = async (req,res)=>{
-    try {
-        const {nombre,alturamin,alturamax,pesomin,pesomax,vida,temperamentos} = req.body
-        const RazaCreada = await Razas.create({
-                Nombre: nombre,
-                AlturaMin : alturamin,
-                AlturaMax : alturamax,
-                PesoMin : pesomin,
-                PesoMax : pesomax,
-                Vida: vida
-        })
-        if(Array.isArray(temperamentos)){
-            temperamentos.map(async temp => {
-                const TemperamentoCreado = await Temperamentos.findAll({
-                    where:{
-                        Nombre: temp
-                    }}
-                )
-                RazaCreada.addTemperamentos(TemperamentoCreado)
-            })
-        }else{
-            const TemperamentoCreado = await Temperamentos.findAll({
-                where:{
-                    Nombre: temperamentos
-                }}
-            )
-            RazaCreada.addTemperamentos(TemperamentoCreado)
-        }
-            
+    const {nombre,alturamin,alturamax,pesomin,pesomax,vida,temperamentos} = req.body
+    if(nombre && alturamin && alturamax && pesomin && 
+        pesomax && vida && temperamentos){
+            try {
+                const RazaCreada = await Razas.create({
+                        Nombre: nombre,
+                        AlturaMin : alturamin,
+                        AlturaMax : alturamax,
+                        PesoMin : pesomin,
+                        PesoMax : pesomax,
+                        Vida: vida
+                })
+                if(Array.isArray(temperamentos)){
+                    temperamentos.map(async temp => {
+                        const TemperamentoCreado = await Temperamentos.findAll({
+                            where:{
+                                Nombre: temp
+                            }}
+                        )
+                        RazaCreada.addTemperamentos(TemperamentoCreado)
+                    })
+                }else{
+                    const TemperamentoCreado = await Temperamentos.findAll({
+                        where:{
+                            Nombre: temperamentos
+                        }}
+                    )
+                    RazaCreada.addTemperamentos(TemperamentoCreado)
+                }
+                    
+        
+                return res.status(201).json(TemperamentoCreado)
 
-        res.status(201).json(TemperamentoCreado)
-    } catch (error) {
-        res.status(400).json({status:400, message: error.message})
+            } catch (error) {
+                return res.status(400).json({status:400, message: error.message})
+            }
+    }else if(!nombre || !alturamin || !alturamax || !pesomin || 
+        !pesomax || !vida){
+        return res.status(400).json({status:400, message:'No tiene todos los campos'})
     }
+    
 }
 
