@@ -5,9 +5,13 @@ function Paginado({arraydogs}){
     return (
         <div className='Paginado' >
             {arraydogs ? arraydogs.map(elemento => (
-                    <Carddog id={elemento.ID} raza={elemento.Nombre} 
-                    pesomin={elemento.PesoMin} pesomax={elemento.PesoMax} 
-                    temperamento={elemento.Temperamento} image={elemento.image}/>
+                    <div>
+                        <div className='glass-div2'></div>
+                        <div className='glass-div'></div>
+                        <Carddog id={elemento.ID} raza={elemento.Nombre} 
+                        pesomin={elemento.PesoMin} pesomax={elemento.PesoMax} 
+                        temperamento={elemento.Temperamento} image={elemento.image}/>
+                    </div>
             )) : <p>No hay perros</p>}
         </div>
     )

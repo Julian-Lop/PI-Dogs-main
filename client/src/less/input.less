@@ -7,19 +7,27 @@
     background: @fondo;
     input{
         font-size: 20px;
-        border-radius: 10px;
+        border-radius: 15px;
         border-style: none;
     }
     button{
+        height: 35px;
         background: white;
         font-size: 18px;
-        border-radius: 10px;
-        border-style: 1px solid black;
+        font-weight: bold;
+        border-radius: 15px;
+        border-style: none;
         cursor: pointer;
+        mix-blend-mode: screen;
+        &:hover{
+            background-color: black;
+            color: white;
+            mix-blend-mode: multiply;
+        }
     }
     select{
         font-size: 18px;
-        border-radius: 10px;
+        border-radius: 15px;
         border-style: none;
         cursor: pointer;
     }

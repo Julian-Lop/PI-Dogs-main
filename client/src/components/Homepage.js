@@ -49,27 +49,29 @@ function Homepage(){
 
     return (
         <div className="Homepage">
-            {/* <input type="text" value={search} onChange={onSearchChange}/>
-            <hr/>*/}
-            <InputBusqueda setCurrentPage={setCurrentPage} setsearch={setsearch} temp={stateTemperaments}/>
-            {/* <select name="select" onChange={e => onSearchChange(e)}>
-                <option value=''>Temperamento</option>
-                {stateTemperaments.map(e => (
-                    <option value={e.Nombre}>{e.Nombre}</option>
-                ))}
-            </select> */}
-            <div className="botonesPaginado">
-            <button onClick={prevPage}>Anterior</button>
-            <button onClick={nextPage}>Siguiente</button>
-            </div> 
-            { search && stateFilter.length < 1 ? <h2>Loading...</h2>: null}
-            { !search && statedogs.length < 1 ? <h2>Loading...</h2>: null}
-            <Paginado arraydogs={numeroDogs}/>
-            {/* {numeroDogs ? numeroDogs.map(elemento => (
-                    <Carddog id={elemento.ID} raza={elemento.Nombre} 
-                    pesomin={elemento.PesoMin} pesomax={elemento.PesoMax} 
-                    temperamento={elemento.Temperamento} image={elemento.image}/>
-            )) : <p>No hay perros</p>} */}
+            <div className="contenedor-paginado">
+                {/* <input type="text" value={search} onChange={onSearchChange}/>
+                <hr/>*/}
+                <InputBusqueda setCurrentPage={setCurrentPage} setsearch={setsearch} temp={stateTemperaments}/>
+                {/* <select name="select" onChange={e => onSearchChange(e)}>
+                    <option value=''>Temperamento</option>
+                    {stateTemperaments.map(e => (
+                        <option value={e.Nombre}>{e.Nombre}</option>
+                    ))}
+                </select> */}
+                <div className="botonesPaginado">
+                <button onClick={prevPage}>Anterior</button>
+                <button onClick={nextPage}>Siguiente</button>
+                </div> 
+                { search && stateFilter.length < 1 ? <h2>Loading...</h2>: null}
+                { !search && statedogs.length < 1 ? <h2>Loading...</h2>: null}
+                <Paginado arraydogs={numeroDogs}/>
+                {/* {numeroDogs ? numeroDogs.map(elemento => (
+                        <Carddog id={elemento.ID} raza={elemento.Nombre} 
+                        pesomin={elemento.PesoMin} pesomax={elemento.PesoMax} 
+                        temperamento={elemento.Temperamento} image={elemento.image}/>
+                )) : <p>No hay perros</p>} */}
+            </div>
         </div>
     )
 }
