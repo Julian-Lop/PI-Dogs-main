@@ -2,7 +2,9 @@ import React, {useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {getDetail} from '../actions/index.js'
+import { Link } from "react-router-dom";
 import '../css/styles.css'
+import Navbar from '../components/Navbar'
 
 function Dogdetail(){
     const stateraza = useSelector((state) => state.detalleRaza)
@@ -15,7 +17,7 @@ function Dogdetail(){
 
     return (
         <div className="Dogdetail">
-            <h1>Detalle de raza</h1>
+            <Navbar title={'Detalle de raza'}/>
                 {stateraza.length < 1 ? <h2>Loading...</h2>: stateraza.map(e => (
                     <div className="contenedor-detalle">
                         <div>
@@ -28,6 +30,7 @@ function Dogdetail(){
                         <div>
                             <img src={e.image} width="350" height="350"/>
                         </div>
+                        <div className="contenedor-glass-detail"></div>
                     </div>
                 ))}
         </div>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import {getTemperaments,createDog} from '../actions/index.js'
 import '../css/styles.css'
+import Navbar from "./Navbar.js";
 
 function Createdog(){
     const dispatch = useDispatch()
@@ -93,7 +94,8 @@ function Createdog(){
 
     return (
         <div className="Createdog">
-            <h1>CreateDog</h1>
+            <Navbar title={'Crear Dog'}/>
+            <div className="contenedor-glass-createdog"></div>
             <div className="contenedor-formulario">
                 <form type onSubmit={(e) => {
                     e.preventDefault();
@@ -106,7 +108,7 @@ function Createdog(){
                         </div>
                     
                         <div className="input-altura">
-                            <label>Altura: </label>
+                            <label>Altura (cm): </label>
                             <br/>
                             <input type="number" id="alturamin" placeholder="Alturamin"
                             value={datos.alturamin} onChange={e => handleOnchange(e)}/>
@@ -115,7 +117,7 @@ function Createdog(){
                         </div>
                         
                         <div className="input-peso">
-                            <label>Peso: </label>
+                            <label>Peso (kg): </label>
                             <br/>
                             <input type="number" id="pesomin" placeholder="Peso mínimo"
                             value={datos.pesomin} onChange={e => handleOnchange(e)}/>
@@ -125,7 +127,7 @@ function Createdog(){
                         
                         <div className="input-temperamento">
                             <div>
-                                <label>Seleccione los temperamentos</label>
+                                <label>Seleccione los temperamentos: </label>
                                 <select name="select" onChange={e => handleOnchangeTemp(e.target.value)}>
                                     {stateTemp.map(temp => (
                                         <option value={temp.Nombre} key={temp.ID}>{temp.Nombre}</option>
@@ -133,20 +135,18 @@ function Createdog(){
                                 </select>
                             </div>
                             <div>
-                                <textarea id="textarea" value={error.nombre+'|'+error.alturamin+'|'+
-                                error.alturamax+'|'+error.pesomin+'|'+error.pesomax+'|'+error.vida+'|'+error.temperamentos} 
+                                <textarea id="textarea" value={temp} 
                                 disabled>Write something here</textarea>
                             </div>
-                            <label>Tiempo de vida: </label>
+                            <label>Tiempo de vida (Years): </label>
                             <br/>
                             <div>
                                 <input type="number" id="vida" placeholder="tiempo de vida"
-                                value={datos.vida} onChange={e => handleOnchange(e)}/>
+                                value={datos.vida} onChange={e => handleOnchange(e)} className="input-vida"/>
                             </div>
                         </div>
-
                         <div>
-                            <input type="submit" value="enviar"/>
+                            <input type="submit" value="enviar" className="boton-createdog"/>
                         </div>
                     </div>
                 </form>

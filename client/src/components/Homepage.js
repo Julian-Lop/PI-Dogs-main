@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import {getAllDogs,getTemperaments} from '../actions/index.js'
 import InputBusqueda from './InputBusqueda.js'
-import Carddog from "./Carddog.js";
+import Navbar from "./Navbar.js";
 import Paginado from "./Paginado.js"
 import '../css/styles.css'
+
 
 function Homepage(){
     const statedogs = useSelector((state)=> state.todosLosdogs)
