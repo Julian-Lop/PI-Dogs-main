@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {getDetail} from '../actions/index.js'
-import { Link } from "react-router-dom";
+import Loading from "./Loading.js";
 import '../css/styles.css'
 import Navbar from '../components/Navbar'
 
@@ -18,7 +18,7 @@ function Dogdetail(){
     return (
         <div className="Dogdetail">
             <Navbar title={'Detalle de raza'}/>
-                {stateraza.length < 1 ? <h2>Loading...</h2>: stateraza.map(e => (
+                {stateraza.length < 1 ? <Loading/>: stateraza.map(e => (
                     <div className="contenedor-detalle">
                         <div>
                             <h2>{e.Nombre}</h2>

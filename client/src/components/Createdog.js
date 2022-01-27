@@ -88,6 +88,16 @@ function Createdog(){
         }else{
             dispatch(createDog(datos))
             console.log('enviado')
+            setDatos({
+                nombre: '',
+                alturamin: 0,
+                alturamax: 0,
+                pesomin: 0,
+                pesomax: 0,
+                vida: 0,
+                temperamentos : []
+            })
+            setTemp([])
         }
     }
     

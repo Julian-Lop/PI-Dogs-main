@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import {getAllDogs,getTemperaments} from '../actions/index.js'
 import InputBusqueda from './InputBusqueda.js'
-import Navbar from "./Navbar.js";
+import Loading from "./Loading.js";
 import Paginado from "./Paginado.js"
 import '../css/styles.css'
 
@@ -64,8 +64,8 @@ function Homepage(){
                 <button onClick={prevPage}>Anterior</button>
                 <button onClick={nextPage}>Siguiente</button>
                 </div> 
-                { search && stateFilter.length < 1 ? <h2>Loading...</h2>: null}
-                { !search && statedogs.length < 1 ? <h2>Loading...</h2>: null}
+                { search && stateFilter.length < 1 ? <Loading/>: null}
+                { !search && statedogs.length < 1 ? <Loading/>: null}
                 <Paginado arraydogs={numeroDogs}/>
                 {/* {numeroDogs ? numeroDogs.map(elemento => (
                         <Carddog id={elemento.ID} raza={elemento.Nombre} 
