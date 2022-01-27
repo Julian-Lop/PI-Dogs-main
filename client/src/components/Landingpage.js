@@ -2,7 +2,6 @@ import React from 'react'
 import '../css/styles.css'
 
 function Landingpage(){
-
     return (
         <div className='Landingpage'>
             <div className='glass-left'>
