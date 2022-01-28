@@ -113,7 +113,7 @@ exports.verDogdRaza = async (req,res)=>{
 exports.sendDog = async (req,res)=>{
     const {nombre,alturamin,alturamax,pesomin,pesomax,vida,temperamentos} = req.body
     if(nombre && alturamin && alturamax && pesomin && 
-        pesomax && vida && temperamentos){
+        pesomax && vida){
             try {
                 const RazaCreada = await Razas.create({
                         Nombre: nombre,
@@ -142,15 +142,13 @@ exports.sendDog = async (req,res)=>{
                 }
                     
         
-                return res.status(201).json(TemperamentoCreado)
+                return  await res.status(201).json({RazaCreada})
 
             } catch (error) {
-                return res.status(400).json({status:400, message: error.message})
+                return await res.status(400).json({status:400, message: error.message})
             }
-    }else if(!nombre || !alturamin || !alturamax || !pesomin || 
-        !pesomax || !vida){
-        return res.status(400).json({status:400, message:'No tiene todos los campos'})
+    }else{
+        return await res.status(400).json({status:400, message:'No tiene todos los campos'})
     }
-    
 }
 
