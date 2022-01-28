@@ -74,10 +74,12 @@ function Createdog(){
         let tem = temp.indexOf(e)
         if(tem === -1){
             setTemp(old => [...old,e]);
+            setDatos({...datos, 
+                temperamentos: [...datos.temperamentos, e]})
         }else{
             temp.splice(tem,1)
+            setDatos({...datos, temperamentos: temp})
         }
-        setDatos({...datos, temperamentos: temp})
     }
 
     const submitDatos = () => {
