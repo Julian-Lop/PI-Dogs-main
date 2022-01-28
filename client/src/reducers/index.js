@@ -11,6 +11,7 @@ const estadoInicial = {
     dogsfiltrados : [],
     todosLosdogs : [],
     temperamentos : [],
+    tempfiltrados : [],
     detalleRaza: []
     
 }
@@ -51,7 +52,26 @@ function rootReducer(state = estadoInicial, action){
                 dogsfiltrados: tempfilter
             }
         case FILTRAR_RAZA:
-            return{}
+            const razafilter = 
+            state.todosLosdogs.map((e) => {
+                if(typeof(e.Temperamento) === 'string'){
+                    return e.Temperamento
+                }
+            }).toString().split(', ').toString().split(',')
+            let eliminarRepetedios = []
+            razafilter.map(e => {
+                if(eliminarRepetedios.indexOf(e) == -1){
+                    eliminarRepetedios.push(e)
+                }
+            })
+            let razafilterobj = state.temperamentos.filter(e => {
+                if(eliminarRepetedios.includes(e.Nombre))return e
+            })
+
+            return{
+                ...state,
+                tempfiltrados: razafilterobj
+            }
         case ORDENAR_PESO:
             let dogsPeso = !state.dogsfiltrados.length ? state.todosLosdogs : state.dogsfiltrados
             if(action.payload === 'asc'){
@@ -107,7 +127,9 @@ function rootReducer(state = estadoInicial, action){
                 dogsfiltrados: dogsNombre
             }
         case CREAR_DOG:
-            return{}              
+            return{
+                ...state
+            }              
         default:
             return state
     }

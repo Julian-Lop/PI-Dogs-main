@@ -16,9 +16,9 @@ export function getAllDogs(dogname){
                 return fetch(`http://localhost:3001/dogs?name=${dogname}`)
                 .then(response => response.json())
                 .then(json => {
-                    dispatch({type: OBTENER_DOGS, payload: json})
+                   return dispatch({type: OBTENER_DOGS, payload: json})
                 }).catch(err => {
-                    dispatch({type: OBTENER_DOGS, payload: err})
+                    return dispatch({type: OBTENER_DOGS, payload: err})
                 })
             }else{
                 let json = await fetch(`http://localhost:3001/dogs`)
@@ -61,8 +61,8 @@ export function filterTemperament(temeperamento){
     return {type: FILTRAR_TEMPERAMENTO, payload: temeperamento}
 }
 
-export function filterRaza(idRaza){
-    return {type: FILTRAR_RAZA, payload:idRaza}
+export function filterRaza(){
+    return{type: FILTRAR_RAZA}
 }
 
 export function organizeByWeight(opcionWeight){

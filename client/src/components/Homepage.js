@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import {getAllDogs,getTemperaments} from '../actions/index.js'
+import {getAllDogs,getTemperaments,filterRaza} from '../actions/index.js'
 import InputBusqueda from './InputBusqueda.js'
 import Loading from "./Loading.js";
 import Paginado from "./Paginado.js"
