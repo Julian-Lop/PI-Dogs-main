@@ -93,6 +93,12 @@ function Createdog(){
                 document.querySelector('.Alert').className = 'Alert-dispel'
             }, 3000);
         }else{
+            document.querySelector('.Alert-dispel').className = 'Alert-successful-dispel'
+            document.querySelector('.Alert-successful-dispel').className = 'Alert-successful'
+            setTimeout(() => {
+                document.querySelector('.Alert-successful').className = 'Alert-successful-dispel'
+                document.querySelector('.Alert-successful-dispel').className = 'Alert-dispel'
+            }, 3000);
             dispatch(createDog(datos))
             console.log('enviado')
             setDatos({
@@ -112,7 +118,7 @@ function Createdog(){
     return (
         <div className="Createdog">
             <Navbar title={'Crear Dog'}/>
-            <Alert/>
+            <Alert error={error}/>
             <div className="contenedor-glass-createdog"></div>
             <div className="contenedor-formulario">
                 <form type onSubmit={(e) => {
