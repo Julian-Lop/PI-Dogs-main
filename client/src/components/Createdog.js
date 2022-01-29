@@ -87,6 +87,7 @@ function Createdog(){
         || error.hasOwnProperty('alturamax') || error.hasOwnProperty('pesomin') || 
         error.hasOwnProperty('pesomax') || error.hasOwnProperty('vida')){
             console.log('Hay errores en los datos')
+            alert('Están mal los datos agregados')
         }else{
             dispatch(createDog(datos))
             console.log('enviado')
