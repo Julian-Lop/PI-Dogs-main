@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {getTemperaments,createDog} from '../actions/index.js'
 import '../css/styles.css'
 import Navbar from "./Navbar.js";
+import Alert from "./Alert.js";
 
 function Createdog(){
     const dispatch = useDispatch()
@@ -87,7 +88,10 @@ function Createdog(){
         || error.hasOwnProperty('alturamax') || error.hasOwnProperty('pesomin') || 
         error.hasOwnProperty('pesomax') || error.hasOwnProperty('vida')){
             console.log('Hay errores en los datos')
-            alert('Están mal los datos agregados')
+            document.querySelector('.Alert-dispel').className = 'Alert'
+            setTimeout(() => {
+                document.querySelector('.Alert').className = 'Alert-dispel'
+            }, 3000);
         }else{
             dispatch(createDog(datos))
             console.log('enviado')
@@ -108,6 +112,7 @@ function Createdog(){
     return (
         <div className="Createdog">
             <Navbar title={'Crear Dog'}/>
+            <Alert/>
             <div className="contenedor-glass-createdog"></div>
             <div className="contenedor-formulario">
                 <form type onSubmit={(e) => {

@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import '../css/styles.css'
 
 function Carddog({id,raza,pesomin,pesomax,temperamento,image}){
+
+
     return (
         <div className="Carddog" key={id}>
             <div className='imageDog'><img src={image}/></div>

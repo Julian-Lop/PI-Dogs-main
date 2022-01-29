@@ -218,6 +218,7 @@
   background: white;
   border-style: none;
   mix-blend-mode: screen;
+  text-align: center;
 }
 .Createdog .contenedor-formulario .contenedorinputs select {
   font-size: 20px;
@@ -274,10 +275,12 @@
   height: 400px;
   display: flex;
   flex-direction: column;
+  transition: all 2s;
 }
 .Carddog .imageDog {
   padding-top: 5%;
   text-align: center;
+  transition: all 2s;
 }
 .Carddog .imageDog img {
   width: 150px;
@@ -286,6 +289,7 @@
 }
 .Carddog .info {
   text-align: center;
+  transition: all 2s;
 }
 .Carddog .info a {
   text-decoration: none;
@@ -303,6 +307,7 @@
   font-size: 20px;
   border-radius: 15px;
   border-style: none;
+  text-align: center;
 }
 .InputBusqueda button {
   height: 35px;
@@ -327,19 +332,24 @@
   border-style: none;
   cursor: pointer;
   mix-blend-mode: screen;
+  text-align: center;
 }
 .Paginado {
+  opacity: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding-top: 2%;
   padding-bottom: 10%;
+  transition: all 2s;
 }
 .Paginado div {
   margin-top: 5%;
   margin-bottom: 5%;
 }
 .Paginado .glass-div {
+  opacity: 1;
+  transition: all 2s;
   margin-top: 20px;
   position: absolute;
   border-radius: 15px;
@@ -352,6 +362,7 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 .Paginado .glass-div2 {
+  transition: all 2s;
   margin-top: 20px;
   position: absolute;
   border-radius: 15px;
@@ -414,4 +425,52 @@
   to {
     transform: rotate(360deg);
   }
+}
+.Alert {
+  position: fixed;
+  top: 12vw;
+  z-index: 1;
+  height: 300px;
+  width: 40%;
+  left: 30%;
+  right: 30%;
+  border-radius: 35px;
+  background: #e751514d;
+  box-shadow: 0px 8px 32px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  transition: all 2s;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.Alert .contenedor-texto {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+}
+.Alert-dispel {
+  position: fixed;
+  top: -100vw;
+  z-index: 1;
+  height: 300px;
+  width: 40%;
+  left: 30%;
+  right: 30%;
+  border-radius: 35px;
+  background: #e751514d;
+  box-shadow: 0px 8px 32px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  transition: all 2s;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.Alert-dispel .contenedor-texto {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
 }

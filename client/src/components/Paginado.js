@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import '../css/styles.css'
 import Carddog from './Carddog'
 
 function Paginado({arraydogs}){
+
     return (
         <div className='Paginado' >
             {arraydogs ? arraydogs.map(elemento => (
