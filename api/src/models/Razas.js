@@ -32,6 +32,10 @@ module.exports = (sequelize) => {
     Vida: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   });
 };

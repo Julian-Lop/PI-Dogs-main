@@ -5,7 +5,7 @@ const {Razas,Temperamentos} = require('../db.js')
 
 const allDogs = async () => {
     let dogsDB = await Razas.findAll({
-    attributes:['ID','Nombre','AlturaMin','AlturaMax','PesoMin','PesoMax','Vida'], 
+    attributes:['ID','Nombre','AlturaMin','AlturaMax','PesoMin','PesoMax','Vida','image'], 
     include: {
         model: Temperamentos,
         attributes: ['Nombre'],
@@ -22,7 +22,8 @@ const allDogs = async () => {
             PesoMin: dog.PesoMin,
             PesoMax: dog.PesoMax,
             Vida: dog.Vida,
-            Temperamento: dog.Temperamentos.map(e => {return e.Nombre}).toString()
+            Temperamento: dog.Temperamentos.map(e => {return e.Nombre}).toString(),
+            image: dog.image
         }
     })
     let dogsApi = 
@@ -121,7 +122,8 @@ exports.sendDog = async (req,res)=>{
                         AlturaMax : alturamax,
                         PesoMin : pesomin,
                         PesoMax : pesomax,
-                        Vida: vida
+                        Vida: vida,
+                        image: 'https://cdn.pixabay.com/photo/2019/08/19/07/45/dog-4415649_960_720.jpg'
                 })
                 if(Array.isArray(temperamentos)){
                     temperamentos.map(async temp => {
