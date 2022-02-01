@@ -12,7 +12,8 @@ AlturaMin: 24,
 AlturaMax: 30,
 PesoMin: 10,
 PesoMax: 15,
-vida: 10
+Vida: 10,
+image: 'algo'
 };
 
  describe('Dogs routes', () => {

@@ -7,15 +7,16 @@ describe('Razas model', () => {
       console.error('Unable to connect to the database:', err);
     }));
   describe('Validators', () => {
-    beforeEach(() => Razas.sync({ force: true }));
+    beforeEach(async () => await Razas.sync({ force: true }));
     describe('name', () => {
       it('should throw an error if name is null', (done) => {
-        Razas.create({})
+        Razas.create({
+        })
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done())   
       });
       it('should work when its a valid name', () => {
-        Razas.create({ Nombre: 'Pug' });
+        Razas.create({ Nombre: 'PerroNuevo' });
       });
     });
   });
