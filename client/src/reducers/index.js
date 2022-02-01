@@ -76,30 +76,40 @@ function rootReducer(state = estadoInicial, action){
             let dogsPeso = !state.dogsfiltrados.length ? state.todosLosdogs : state.dogsfiltrados
             if(action.payload === 'asc'){
                 dogsPeso.sort((a,b) => {
-                    if(a.PesoMax && b.PesoMax){
-                        if(a.PesoMax > b.PesoMax) return 1
-                        else if(a.PesoMax < b.PesoMax) return -1
-                        else return 0
-                    }else if(!a.PesoMax || !b.PesoMax){
-                        let pesoA = !a.PesoMax || !a.PesoMin ? a.PesoMax+a.PesoMin : a.PesoMax && a.PesoMin ? a.PesoMax : 100
-                        let pesoB = !b.PesoMax || !b.PesoMin ? b.PesoMax+b.PesoMin : b.PesoMax && b.PesoMin ? b.PesoMax : 100 
-                        if(pesoA > pesoB) return 1
-                        else if(pesoA < pesoB) return -1
-                        else return 0
+                    if(a.PesoMin && a.PesoMin && b.PesoMin && b.PesoMin){
+                        if(a.PesoMax === b.PesoMax && a.PesoMin > b.PesoMin) return 1
+                        if(a.PesoMax === b.PesoMax && a.PesoMin < b.PesoMin) return -1
+                        if(a.PesoMin > b.PesoMin) return 1
+                        else return -1
+                    }
+                    else{
+                        let pesoAmin = !a.PesoMin ? a.PesoMax : a.PesoMin
+                        let pesoAmax = !a.PesoMax ? a.PesoMin : a.PesoMax
+                        let pesoBmin = !b.PesoMin ? b.PesoMax : b.PesoMin
+                        let pesoBmax = !b.PesoMax ? b.PesoMin : b.PesoMax
+                        if(pesoAmin === pesoBmin && pesoAmax > pesoBmax) return 1
+                        if(pesoAmin === pesoBmin && pesoAmax < pesoBmax) return -1
+                        if(pesoAmin > pesoBmin) return 1
+                        else return -1
                     }
                 })
             }else if(action.payload === 'des'){
                 dogsPeso.sort((a,b) => {
-                    if(a.PesoMax && b.PesoMax){
-                        if(a.PesoMax > b.PesoMax) return -1
-                        else if(a.PesoMax < b.PesoMax) return 1
-                        else return 0
-                    }else if(!a.PesoMax || !b.PesoMax){
-                        let pesoA = !a.PesoMax || !a.PesoMin ? a.PesoMax+a.PesoMin : a.PesoMax && a.PesoMin ? a.PesoMax : 100
-                        let pesoB = !b.PesoMax || !b.PesoMin ? b.PesoMax+b.PesoMin : b.PesoMax && b.PesoMin ? b.PesoMax : 100 
-                        if(pesoA > pesoB) return -1
-                        else if(pesoA < pesoB) return 1
-                        else return 0
+                    if(a.PesoMin && a.PesoMin && b.PesoMin && b.PesoMin){
+                        if(a.PesoMin === b.PesoMin && a.PesoMax > b.PesoMax) return -1
+                        if(a.PesoMin === b.PesoMin && a.PesoMax < b.PesoMax) return 1
+                        if(a.PesoMin > b.PesoMin) return -1
+                        else return 1
+                    }
+                    else{
+                        let pesoAmin = !a.PesoMin ? a.PesoMax : a.PesoMin
+                        let pesoAmax = !a.PesoMax ? a.PesoMin : a.PesoMax
+                        let pesoBmin = !b.PesoMin ? b.PesoMax : b.PesoMin
+                        let pesoBmax = !b.PesoMax ? b.PesoMin : b.PesoMax
+                        if(pesoAmin === pesoBmin && pesoAmax > pesoBmax) return -1
+                        if(pesoAmin === pesoBmin && pesoAmax < pesoBmax) return 1
+                        if(pesoAmin > pesoBmin) return -1
+                        else return 1
                     }
                 })
             }
