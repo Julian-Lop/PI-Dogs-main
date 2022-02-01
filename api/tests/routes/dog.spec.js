@@ -52,9 +52,9 @@ image: 'algo'
 
    describe('GET /dog', ()=>{
        it('deberia guardar un nuevo dog y responder con un json', ()=>{
-           expect(agent.post('/dog').send({Nombre: 'NuevoDog', AlturaMin: 32, AlturaMin: 42,
+           agent.post('/dog').send({Nombre: 'NuevoDog', AlturaMin: 32, AlturaMin: 42,
             PesoMin: 10, PesoMax:15, Vida: 10, Temperamento : ['Active']}).then(
-                response => response))
+              () => {expect("Content-Type",/json/)})
        })
    })
 });
