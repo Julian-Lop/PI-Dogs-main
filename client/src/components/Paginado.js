@@ -4,8 +4,12 @@ import Carddog from './Carddog'
 
 function Paginado({arraydogs}){
 
+    setTimeout(() => {
+        document.querySelector('.Paginado-dispel').className = 'Paginado'
+    }, 500);
+
     return (
-        <div className='Paginado' >
+        <div className='Paginado-dispel' >
             {arraydogs ? arraydogs.map(elemento => (
                     <div>
                         <div className='glass-div2'></div>

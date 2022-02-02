@@ -13,6 +13,10 @@ function Createdog(){
         dispatch(getTemperaments())
     },[dispatch])
 
+    setTimeout(() => {
+        document.querySelector('.Createdog-dispel').className = 'Createdog'
+    }, 200);
+
     const [error, setError] = useState({
         nombre:'Debe contener un nombre',
         alturamin: 'Debe contener una altura min valida',
@@ -116,7 +120,7 @@ function Createdog(){
     
 
     return (
-        <div className="Createdog">
+        <div className="Createdog-dispel">
             <Navbar title={'Crear Dog'}/>
             <Alert error={error}/>
             <div className="contenedor-glass-createdog"></div>

@@ -15,11 +15,15 @@ function Dogdetail(){
         dispatch(getDetail(idRaza))
     },[dispatch])
 
+    setTimeout(() => {
+        document.querySelector('.contenedor-detalle-dispel').className = 'contenedor-detalle'
+    }, 200);
+
     return (
         <div className="Dogdetail">
             <Navbar title={'Detalle de raza'}/>
                 {stateraza.length < 1 ? <Loading/>: stateraza.map(e => (
-                    <div className="contenedor-detalle">
+                    <div className="contenedor-detalle-dispel">
                         <div>
                             <h2>{e.Nombre}</h2>
                             <h3>Altura: {e.AlturaMin} - {e.AlturaMax} Cm</h3>

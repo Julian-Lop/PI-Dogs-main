@@ -16,6 +16,10 @@ function Homepage(){
     const [currentPage, setCurrentPage] = useState(0)
     const [search, setsearch] = useState('');
 
+    setTimeout(() => {
+        document.querySelector('.botonesPaginado-dispel').className = 'botonesPaginado'
+    }, 500);
+
     useEffect(()=>{
         dispatch(getAllDogs())
         dispatch(getTemperaments())
@@ -25,12 +29,14 @@ function Homepage(){
     const numeroDogs = search === '' ? statedogs.slice(currentPage,currentPage+8) : stateFilter.slice(currentPage,currentPage+8)
 
     const nextPage = () => {
+        
         if(statedogs.slice(currentPage+8,currentPage+16).length > 0 && stateFilter.length < 1){
             setCurrentPage(currentPage+8)
         }
         if(stateFilter.slice(currentPage+8,currentPage+16).length > 0 && statedogs.slice(currentPage+8,currentPage+16).length > 0){
             setCurrentPage(currentPage+8)
         }
+        
     }
     const prevPage = () => {
         if(currentPage > 0){
@@ -61,7 +67,7 @@ function Homepage(){
                         <option value={e.Nombre}>{e.Nombre}</option>
                     ))}
                 </select> */}
-                <div className="botonesPaginado">
+                <div className="botonesPaginado-dispel">
                 <button onClick={prevPage}>Anterior</button>
                 <button onClick={nextPage}>Siguiente</button>
                 </div> 
