@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import {getAllDogs,getTemperaments,filterRaza} from '../actions/index.js'
+import {getAllDogs,getTemperaments,filterRaza, getDetail} from '../actions/index.js'
 import InputBusqueda from './InputBusqueda.js'
 import Loading from "./Loading.js";
 import Paginado from "./Paginado.js"
@@ -19,6 +19,7 @@ function Homepage(){
     useEffect(()=>{
         dispatch(getAllDogs())
         dispatch(getTemperaments())
+        dispatch(getDetail())
     }, [dispatch])
 
     const numeroDogs = search === '' ? statedogs.slice(currentPage,currentPage+8) : stateFilter.slice(currentPage,currentPage+8)

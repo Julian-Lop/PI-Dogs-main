@@ -10,7 +10,7 @@ function Dogdetail(){
     const stateraza = useSelector((state) => state.detalleRaza)
     const dispatch = useDispatch()
     const {idRaza} = useParams()
-
+    
     useEffect(()=> {
         dispatch(getDetail(idRaza))
     },[dispatch])
@@ -26,6 +26,7 @@ function Dogdetail(){
                             <h3>Peso: {e.PesoMin} - {e.PesoMax} Kg</h3>
                             <h3>Temperamento: {e.Temperamento}</h3>
                             <h3>Años de vida: {e.Vida} años</h3>
+                            <h3>Origen: {e.origen}</h3>
                         </div>
                         <div>
                             <img src={e.image} width="350" height="350"/>

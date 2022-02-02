@@ -33,6 +33,10 @@ function rootReducer(state = estadoInicial, action){
                  })
             }
         case OBTENER_INFO_RAZA:
+            if(!action.payload) return {
+                ...state,
+                detalleRaza: []
+            }
             return {
                 ...state,
                 detalleRaza: action.payload

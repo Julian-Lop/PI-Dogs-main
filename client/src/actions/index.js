@@ -50,6 +50,8 @@ export function getDetail(idRaza){
                 }).catch(err => {
                     dispatch({type: OBTENER_INFO_RAZA, payload: err})
                 })
+            }else{
+                dispatch({type: OBTENER_INFO_RAZA, payload: idRaza})
             }
         } catch (error) {
             console.log(error)

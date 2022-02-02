@@ -12,7 +12,7 @@ function Paginado({arraydogs}){
                         <div className='glass-div'></div>
                         <Carddog id={elemento.ID} raza={elemento.Nombre} 
                         pesomin={elemento.PesoMin} pesomax={elemento.PesoMax} 
-                        temperamento={elemento.Temperamento} image={elemento.image}/>
+                        temperamento={elemento.Temperamento} image={elemento.image} origen={elemento.origen}/>
                     </div>
             )) : <p>No hay perros</p>}
         </div>
