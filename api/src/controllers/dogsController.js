@@ -30,16 +30,20 @@ const allDogs = async () => {
     axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${APIKEY}`)
     .then(response =>{
         return response.data.map((dog) => {
+            let pesomin = !Number(dog.weight.metric.split(' - ')[0])?Number(dog.weight.metric.split(' - ')[1]):Number(dog.weight.metric.split(' - ')[0])
+            let pesomax = !Number(dog.weight.metric.split(' - ')[1])?Number(dog.weight.metric.split(' - ')[0]):Number(dog.weight.metric.split(' - ')[1])
+
             return {
                     ID: dog.id,
                     Nombre : dog.name,
-                    PesoMin : Number(dog.weight.metric.split(' - ')[0]),
-                    PesoMax : Number(dog.weight.metric.split(' - ')[1]),
+                    PesoMin : pesomin,
+                    PesoMax : pesomax,
                     AlturaMin : Number(dog.height.metric.split(' - ')[0]),
                     AlturaMax : Number(dog.height.metric.split(' - ')[1]),
                     Temperamento : dog.temperament,
                     Vida : Number(dog.life_span.split(' ')[0]),
-                    image : dog.image.url
+                    image : dog.image.url,
+                    origen : dog.origin
                     }
         })
     })
@@ -98,7 +102,8 @@ exports.verDogdRaza = async (req,res)=>{
                                     AlturaMin : dog.AlturaMin,
                                     AlturaMax : dog.AlturaMax,
                                     Vida : dog.Vida,
-                                    image : dog.image
+                                    image : dog.image,
+                                    origen : dog.origen
                                     })
             }   
         })
